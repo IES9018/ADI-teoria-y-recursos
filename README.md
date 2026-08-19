@@ -36,7 +36,52 @@ donde corresponde.
 En [`recursos-generales/`](./recursos-generales/) se recopilan los vínculos a las fuentes
 verificables usadas en todo el material (libros, guías oficiales, documentación técnica).
 
-## Scripts
+## 🛠️ Método de trabajo colaborativo
 
-En [`scripts/`](./scripts/) se encuentran los scripts deterministas de apoyo (los mismos
-que se usan en el repo de consignas, ajustados a esta estructura).
+Este repositorio (`ADI-teoria-y-recursos`) y el repo de consignas (`proyecto-adi-2026`)
+trabajan en conjunto. El flujo de trabajo para los estudiantes es:
+
+### 1. Fork y clonar
+- Hacé fork de **ambos repos** desde tu cuenta de GitHub.
+- Cloná ambos repos a tu máquina local.
+- Agregá el repo base como upstream en cada uno.
+
+### 2. Avanzar en una tarea
+- Trabajá en un tema, ejercicio o mejora en cualquiera de los dos repos.
+- Cuando tengas avances relevantes, **hacé un commit** con mensaje Conventional Commit (ej: `feat:`, `docs:`, `fix:`).
+
+### 3. Abrir un Pull Request
+- Subí tu rama a tu fork y abrí un PR contra `main` del repo correspondiente.
+- En el cuerpo del PR, **describí qué hiciste y por qué es relevante** para la materia.
+- Si la mejora es de contenido teórico, abrí el PR en `ADI-teoria-y-recursos`.
+- Si la mejora es de proyecto/andamiaje, abrí el PR en `proyecto-adi-2026`.
+
+### 4. Iteración con el docente
+- Como docente, revisaré los PRs y dejaré comentarios o aprobaciones.
+- Si hay cambios solicitados, hacé los ajustamientos y pushá de nuevo a la misma rama del PR (se actualiza automáticamente).
+- Una vez aprobado, el PR se mergea a `main`.
+
+### 5. Usar Issues para sugerencias
+- Si tenés una idea pero aún no está lista para un PR, **abrí un Issue** en el repo correspondiente.
+- Etiquetá el Issue con `mejora`, `analogía`, `duda` o `sugerencia` según corresponda.
+- El docente y los compañeros pueden comentar y ayudarte a definirlo mejor.
+
+### 6. Flujo recomendado (resumen)
+```
+# Fork ambos repos
+gh repo fork IES9018/ADI-teoria-y-recursos --clone=true
+gh repo fork IES9018/proyecto-adi-2026 --clone=true
+
+# En cada repo, después del fork:
+git remote add upstream https://github.com/IES9018/<repo>.git
+git checkout -b feat/mejora-analogia-x
+
+# Trabajar, commitear y push
+git add .
+git commit -m "feat: nueva analogía para concepto Y"
+git push -u origin feat/mejora-analogia-x
+
+# Abrir PR contra main del repo correspondiente
+gh pr create --base main --head origin/feat/mejora-analogia-x \
+  --title "feat: nueva analogía para concepto Y" --body "Descripción del aporte..."
+```
