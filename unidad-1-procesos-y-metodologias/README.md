@@ -1,42 +1,58 @@
 # Unidad 1: Procesos y Metodologías — Del Vibe Coding al Spec-Driven Development (SDD)
 
-## 1. Metadata y Contexto Cátedra
-- **Materia:** Arquitectura y Diseño de Interfaces (ADI) - Ciclo Lectivo 2026
-- **Unidad Didáctica:** Unidad 1 - Procesos y Metodologías
-- **Ruta Destino Repo:** `ADI-teoria-y-recursos/unidad-1-procesos-y-metodologias/README.md`
-- **Enfoque Pedagógico:** Sustitución de la generación impulsiva ("Vibe Coding") por el Desarrollo Dirigido por Especificaciones (Spec-Driven Development) y uso de Arneses de Control (Harnessing).
-- **Prerrequisito Conceptual:** Modelado de Software (2025).
+## 1. Introducción
+En la era de la inteligencia artificial generativa, el mayor peligro en el desarrollo de software no es escribir código lento, sino construir sistemas enteros sin criterio técnico. Esta unidad aborda la transición crítica desde la generación impulsiva e intempestiva (Vibe Coding) hacia el Desarrollo Dirigido por Especificaciones (Spec-Driven Development), donde el desarrollador asume la soberanía y la responsabilidad de la arquitectura.
 
 ---
 
-## 2. Objetivos de Aprendizaje
-* **Diferenciar** operativamente el *Vibe Coding* del *Spec-Driven Development* (SDD) evaluando costos computacionales, deuda técnica y soberanía del desarrollador.
-* **Diseñar** documentos de especificación declarativa (`SPEC.md`) y registros de decisiones arquitectónicas (`ADR.md`) previos a la fase de codificación.
-* **Configurar** arneses de contexto y restricciones para LLMs (`.opencoderules`, `INSTRUCTIONS.md`) que restrinjan la generación de código al ámbito del diseño definido.
-* **Asumir** la Metáfora del Arquitecto: el estudiante actúa como supervisor crítico y firmante de la responsabilidad técnica, no como un mero ejecutor pasivo.
+## 2. Conceptos Clave
+* **Programación por Vibras (Vibe Coding):** Práctica de redactar requerimientos vagos en lenguaje natural, aceptar el código generado por la IA sin auditoría y re-generar en bucle cuando ocurren errores.
+* **Desarrollo Dirigido por Especificaciones (Spec-Driven Development / SDD):** Enfoque estructurado donde primero se especifican las reglas y modelos de dominio en texto plano declarativo (`SPEC.md`) y registros de decisión (`ADR.md`), y luego se utiliza la IA para implementar bajo esas restricciones inmutables.
+* **Gobernanza del Contexto y Arneses (Harnessing):** Técnica de confinamiento de modelos de IA mediante archivos de reglas locales (`.opencoderules` e `INSTRUCTIONS.md`) que imponen patrones de diseño, tipado estricto e inmutabilidad de contexto.
+* **Motor OpenCode (OpenCode Rules):** Herramienta de ejecución local determinista que lee payloads estructurados (`.json`) y arneses de proyecto para aplicar cambios automáticos y mantener memoria persistente (`.gbrain`).
 
 ---
 
-## 3. Matriz de Contenidos Teóricos
+## 3. Analogía Pedagógica Cotidiana
+* **El Vibe Coding es pedirle a un mozo en un restaurante:** *"Traeme algo rico"*. El resultado es azaroso, probablemente costoso y no satisface las necesidades reales.
+* **El Spec-Driven Development (SDD) es el Arquitecto de Obra:** El estudiante no es el obrero que coloca ladrillos a ciegas; es el **Arquitecto** que diseña los planos detallados, especifica los materiales inmutables, dirige la construcción ejecutada por la constructora (la IA) y firma la responsabilidad técnica final.
+* **El Arnés (`.opencoderules`) son los barandales de un puente:** Imposibilitan física y lógicamente que la IA caiga al vacío o genere estructuras fuera del área segura autorizada.
 
-| Eje Temático | Vibe Coding (Patrón Antagónico) | Spec-Driven Development (Patrón Objetivo) |
+---
+
+## 4. Ejemplo Práctico
+Supongamos la creación de una pantalla de autenticación.
+* **Enfoque Vibe Coding (Incorrecto):** Copiar al chat *"Hacé un login copado con NodeJS"*. La IA decidirá la base de datos, el algoritmo de hash y el manejo de sesiones de forma arbitraria, generando deuda técnica invisible.
+* **Enfoque SDD (Correcto):**
+  1. Redactar `SPEC.md` definiendo variables de entrada, contrato de salida JSON, códigos HTTP y *Non-Goals* (Ej: *"No implementar OAuth2 en esta versión"*).
+  2. Documentar en `ADR-001.md` la elección de JWT firmado con Ed25519.
+  3. Ejecutar OpenCode bajo las reglas del arnés `.opencoderules`.
+
+---
+
+## 5. Comparativas: Vibe Coding vs. Spec-Driven Development
+
+| Eje | Programación por Vibras (Vibe Coding) | Desarrollo Dirigido por Especificaciones (SDD) |
 | :--- | :--- | :--- |
-| **Flujo de Trabajo** | Generación por impulsos en lenguaje natural; aceptación ciega del output sin auditoría técnica. | Proceso en 4 pasos: Especificar (`SPEC.md`), Diseñar (`ADR.md`), Dirigir (Prompting acotado), Revisar (Code Review). |
-| **Gestión de Errores** | Regeneración en bucle estilo "Tragaperras" (copiar/pegar la traza de error en la IA). | Depuración estructurada con hipótesis explicativas, aislamiento de variables y lecturas de logs. |
-| **Control de Contexto** | Prompts masivos sin estructura; consumo ineficiente e ilimitado de tokens por falta de límites. | Gobernanza del contexto mediante archivos de arnés (`.opencoderules` / `INSTRUCTIONS.md`) con reglas inmutables. |
-| **Evaluación del Código** | Aceptación si el sistema "parece funcionar" visualmente. | Defensa técnica del *porqué* de la arquitectura elegida y cumplimiento estricto de la especificación. |
+| **Flujo de Trabajo** | Impulsivo / Prueba y error a ciegas. | 4 Pasos: Especificar (`SPEC.md`), Diseñar (`ADR.md`), Dirigir, Auditar. |
+| **Uso de Tokens** | Re-generación masiva e ineficiente ("Factura Económica"). | Prompts deterministas acotados y gobernados por el arnés. |
+| **Soberanía** | Delegación ciega del diseño en la IA ("Atrofia Cognitiva"). | El estudiante es el Arquitecto que firma la responsabilidad. |
+| **Documentación** | Inexistente o generada a posteriori. | Parte fundamental con **arc42** (Sección B1), **C4 Model** (B2) y **ADRs** (B3/B4). |
 
 ---
 
-## 4. Las 3 Facturas del Vibe Coding
-1. **Factura Económica (Degradación de Tokens):** La regeneración impulsiva consume la ventana de contexto de los modelos, diluyendo la precisión y generando costos innecesarios en cómputo.
-2. **Deuda Técnica Invisible:** El código aceptado sin revisión profunda introduce vulnerabilidades de seguridad, acoplamiento alto y problemas de escalabilidad que fallan en producción.
-3. **Atrofia Cognitiva y Estancamiento:** Delegar el diseño lógico a la IA impide la consolidación del criterio técnico indispensable para ejercer la profesión.
+## 6. Fuentes y Marcos de Referencia (Tabla Unificada de Recursos)
+El estudiante debe consultar los siguientes marcos y bibliografía obligatoria para esta unidad:
+* **[B1] arc42 Framework:** Template de 12 secciones para documentar arquitectura. [arc42.org](https://arc42.org/)
+* **[B2] C4 Model (Simon Brown):** Visualización en 4 niveles (Contexto, Contenedores, Componentes, Código). [c4model.com](https://c4model.com/)
+* **[B3/B4] ADR / MADR Template:** Registros ligeros de decisiones de arquitectura. [adr.github.io/madr](https://adr.github.io/madr/)
+* **[B5] PlantUML / Mermaid:** Generación de diagramas como código versionables en Git. [mermaid.js.org](https://mermaid.js.org/)
+* **[C1] Beyond Vibe Coding (Addy Osmani):** Marco de trabajo *"Plan first, code second"*. [beyond.addy.ie](https://beyond.addy.ie/)
+* **[Gobernanza IES 9-018]:** Marco de gobernanza de servicios digitales del instituto. [IES9018/gobernanza-servicios-digitales](https://github.com/IES9018/gobernanza-servicios-digitales)
 
 ---
 
-## 5. Protocolo de Trabajo en Aula: Flujo SDD
-- Creación directa del repositorio del alumno en la Org `IES9018` bajo el formato `<nombre_alumno>-<nombre_proyecto>`.
-- Configuración inicial de arneses locales (`.opencoderules` / `INSTRUCTIONS.md`).
-- Redacción de especificaciones de diseño (`SPEC.md`) antes de invocar herramientas de generación como OpenCode.
-- Revisión del docente bajo la figura de Capataz/Arquitecto mediante apertura de Issues y Code Reviews sobre la organización.
+## 7. Para Practicar
+1. **Ejercicio 1:** Transformar una consigna vaga (*"Un sistema de turnos para el hospital"*) en una especificación declarativa `SPEC.md` delimitando explícitamente los *Non-Goals*.
+2. **Ejercicio 2:** Configurar un archivo de arnés `.opencoderules` restringiendo la IA para que utilice únicamente sintaxis ECMAScript 2024 y proscriba el tipo `any`.
+3. **Ejercicio 3:** Documentar una decisión de base de datos SQL vs NoSQL utilizando la plantilla MADR (`ADR-001.md`).
