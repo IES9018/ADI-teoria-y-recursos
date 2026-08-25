@@ -10,5 +10,5 @@
 
 ### 2. Flujo de Trabajo y Rol Docente
 * **Rol del Docente (Capataz / Arquitecto de Obra):** El profesor no escribe el código del alumno; inspecciona la arquitectura, audita el uso de especificaciones y deja revisiones mediante **Issues** y comentarios de Pull Requests.
-* **Uso del Arnés (.opencoderules / INSTRUCTIONS.md):** Todo proyecto debe incluir el arnés de control en la raíz para limitar y dirigir la generación de la IA local (OpenCode).
+* **Uso del Arnés (.opencoderules / INSTRUCTIONS.md):** Todo proyecto debe incluir el arnés de control en la raíz para limitar y dirigir la generación de la IA local (OpenCode). Si el alumno usa otro agente (VS Code+Copilot, Cursor, etc.), el arnes es el archivo nativo equivalente; ver entornos-de-desarrollo.md en proyecto-adi-2026. El control (SPEC previa, ADRs, auditoria humana) es identico.
 * **Entregas:** Cada entregable o hito debe contar con su `SPEC.md` validada contra los checklists antes de la fusión: el estudiante abre rama `feature/<tema>` + Pull Request y hace el merge él mismo una vez completos los checklists (auto-aprobación documentada, trazable y reversible). El docente audita después del merge.
