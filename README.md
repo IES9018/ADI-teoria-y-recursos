@@ -1,87 +1,82 @@
-# ADI - Teoría y Recursos
+# ADI — Teoría y Recursos 📚
 
-Material de estudio teórico de la materia **Arquitectura y Diseño de Interfaces (ADI)**
-del IES 9-018 — Tecnicatura Superior en Desarrollo de Software — ciclo 2026.
+**Arquitectura y Diseño de Interfaces · IES 9-018 · Ciclo 2026**
+Tecnicatura Superior en Desarrollo de Software · 3° Año · Prof. Paulo Alvarez
 
-## Estructura
+> Este es el **repo de teoría**: acá estudiás. Las consignas de trabajo práctico están en [`proyecto-adi-2026`](https://github.com/IES9018/proyecto-adi-2026) y la coordinación de sprints de PP3 en [`proyecto-pp3-2026`](https://github.com/IES9018/proyecto-pp3-2026).
 
-El material está organizado por las **6 unidades** del programa oficial de la materia:
+---
 
-| Unidad | Carpeta | Temas |
-|--------|---------|-------|
-| 1. Procesos y Metodologías | [`unidad-1-procesos-y-metodologias/`](./unidad-1-procesos-y-metodologias/) | Introducción al desarrollo de software, ciclo de vida, modelos adaptativos, procesos ágiles, tendencias |
-| 2. Arquitectura de Software | [`unidad-2-arquitectura-de-software/`](./unidad-2-arquitectura-de-software/) | Conceptos generales, estilos arquitectónicos, patrones de diseño, vistas y escenarios, actividades |
-| 3. Diseño de Interfaces | [`unidad-3-diseno-de-interfaces/`](./unidad-3-diseno-de-interfaces/) | HCI y usabilidad, ergonomía del software, métodos de diseño, investigación de usuarios, patrones |
-| 4. Arquitectura Web | [`unidad-4-arquitectura-web/`](./unidad-4-arquitectura-web/) | Evolución de la web, diseño de sitios, patrones de diseño web |
-| 5. Arquitectura Mobile | [`unidad-5-arquitectura-mobile/`](./unidad-5-arquitectura-mobile/) | Conceptos mobile, patrones, herramientas de desarrollo |
-| 6. Herramientas y Tecnologías | [`unidad-6-herramientas-y-tecnologias/`](./unidad-6-herramientas-y-tecnologias/) | Tecnologías, ecosistema de herramientas, diseño y desarrollo de interfaces/web/mobile, integración |
+## 🚦 EMPEZÁ ACÁ (Día 1)
 
-## Cómo leer cada archivo
+| Paso | Qué hacer | Dónde |
+|---|---|---|
+| 1 | Leé este README completo | estás acá ✅ |
+| 2 | Leé las reglas del juego (metodología SDD, arnés, sin forks) | [INSTRUCCIONES_ORGANIZACION.md](./INSTRUCCIONES_ORGANIZACION.md) |
+| 3 | Entrá a la **Unidad 1** y leé el README de la unidad en orden | [unidad-1-procesos-y-metodologias/](./unidad-1-procesos-y-metodologias/) |
+| 4 | Cuando el docente habilite el TP, seguí la consigna en el repo de TPs | [ir al TP vigente](https://github.com/IES9018/proyecto-adi-2026/tree/main/trabajos-practicos) |
 
-Cada tema sigue un **formato estándar**:
+---
 
-1. **Introducción** — contexto de por qué es importante.
-2. **Conceptos clave** — explicación de 0 a 100, para quien no sabe nada de la materia.
-3. **Analogía** — comparación con algo cotidiano para conceptos abstractos.
-4. **Ejemplo práctico** — aplicación concreta.
-5. **Comparativas** — tablas que enfrentan opciones.
-6. **Fuentes** — links reales verificables (PDFs gratuitos, docs oficiales, recursos académicos).
-7. **Para practicar** — ejercicios para afianzar.
+## 🧭 Ruta de lectura (en orden, no saltees)
 
-El material está redactado en **español**, con el término técnico en inglés entre paréntesis
-donde corresponde.
+El programa tiene **6 unidades**. Se estudian en secuencia; la vigente la anuncia el docente en clase.
 
-## Recursos generales
+| Orden | Unidad | Carpeta | Estado |
+|---|---|---|---|
+| 1️⃣ | Procesos y Metodologías — Vibe Coding vs SDD | [unidad-1-procesos-y-metodologias/](./unidad-1-procesos-y-metodologias/) | ✅ completa |
+| 2️⃣ | Arquitectura de Software — estilos, hexagonal, C4, ADR | [unidad-2-arquitectura-de-software/](./unidad-2-arquitectura-de-software/) | ✅ completa |
+| 3️⃣ | Diseño de Interfaces — HCI, usabilidad, wireframes | [unidad-3-diseno-de-interfaces/](./unidad-3-diseno-de-interfaces/) | ✅ completa |
+| 4️⃣ | Arquitectura Web — CSR/SSR/SSG, APIs, stack | [unidad-4-arquitectura-web/](./unidad-4-arquitectura-web/) | ✅ completa |
+| 5️⃣ | Arquitectura Mobile — nativo/cross, offline-first | [unidad-5-arquitectura-mobile/](./unidad-5-arquitectura-mobile/) | ✅ completa |
+| 6️⃣ | Herramientas e Integración — Docker, CI/CD, arnés en pipeline | [unidad-6-herramientas-y-tecnologias/](./unidad-6-herramientas-y-tecnologias/) | ✅ completa |
 
-En [`recursos-generales/`](./recursos-generales/) se recopilan los vínculos a las fuentes
-verificables usadas en todo el material (libros, guías oficiales, documentación técnica).
+Cada unidad además puede tener archivos de desarrollo por tema (`01-introduccion…`, `02-ciclo-de-vida…`) que profundizan lo del README.
 
-## 🛠️ Método de trabajo colaborativo
+---
 
-Este repositorio (`ADI-teoria-y-recursos`) y el repo de consignas (`proyecto-adi-2026`)
-trabajan en conjunto. El flujo de trabajo para los estudiantes es:
+## 🎯 ¿Dónde está el TP de hoy?
 
-### 1. Fork y clonar
-- Hacé fork de **ambos repos** desde tu cuenta de GitHub.
-- Cloná ambos repos a tu máquina local.
-- Agregá el repo base como upstream en cada uno.
+Los **Trabajos Prácticos no viven en este repo**: viven en el [repo de proyecto base y TPs](https://github.com/IES9018/proyecto-adi-2026/tree/main/trabajos-practicos).
 
-### 2. Avanzar en una tarea
-- Trabajá en un tema, ejercicio o mejora en cualquiera de los dos repos.
-- Cuando tengas avances relevantes, **hacé un commit** con mensaje Conventional Commit (ej: `feat:`, `docs:`, `fix:`).
+| TP | Tema | Consigna |
+|---|---|---|
+| **TP 1 (vigente)** | De Vibe Coding a SDD: SPEC + ADR + arnés | [trabajos-practicos/tp1-sdd-y-arneses/](https://github.com/IES9018/proyecto-adi-2026/tree/main/trabajos-practicos/tp1-sdd-y-arneses) |
 
-### 3. Abrir un Pull Request
-- Subí tu rama a tu fork y abrí un PR contra `main` del repo correspondiente.
-- En el cuerpo del PR, **describí qué hiciste y por qué es relevante** para la materia.
-- Si la mejora es de contenido teórico, abrí el PR en `ADI-teoria-y-recursos`.
-- Si la mejora es de proyecto/andamiaje, abrí el PR en `proyecto-adi-2026`.
+Plantillas para resolverlo: [SPEC-template](https://github.com/IES9018/proyecto-adi-2026/blob/main/templates/SPEC-template.md) · [ADR-template](https://github.com/IES9018/proyecto-adi-2026/blob/main/templates/ADR-template.md)
 
-### 4. Iteración con el docente
-- Como docente, revisaré los PRs y dejaré comentarios o aprobaciones.
-- Si hay cambios solicitados, hacé los ajustamientos y pushá de nuevo a la misma rama del PR (se actualiza automáticamente).
-- Una vez aprobado, el PR se mergea a `main`.
+---
 
-### 5. Usar Issues para sugerencias
-- Si tenés una idea pero aún no está lista para un PR, **abrí un Issue** en el repo correspondiente.
-- Etiquetá el Issue con `mejora`, `analogía`, `duda` o `sugerencia` según corresponda.
-- El docente y los compañeros pueden comentar y ayudarte a definirlo mejor.
+## 📂 Mapa de este repo
 
-### 6. Flujo recomendado (resumen)
 ```
-# Fork ambos repos
-gh repo fork IES9018/ADI-teoria-y-recursos --clone=true
-gh repo fork IES9018/proyecto-adi-2026 --clone=true
-
-# En cada repo, después del fork:
-git remote add upstream https://github.com/IES9018/<repo>.git
-git checkout -b feat/mejora-analogia-x
-
-# Trabajar, commitear y push
-git add .
-git commit -m "feat: nueva analogía para concepto Y"
-git push -u origin feat/mejora-analogia-x
-
-# Abrir PR contra main del repo correspondiente
-gh pr create --base main --head origin/feat/mejora-analogia-x \
-  --title "feat: nueva analogía para concepto Y" --body "Descripción del aporte..."
+├── unidad-1..6/            ← teoría por unidad (README + desarrollos)
+│   └── README.md           ← entrada de cada unidad (7 secciones estándar)
+├── RECURSOS.md             ← bibliografía curada + institucional
+├── INSTRUCCIONES_…         ← reglas obligatorias de operatoria
+└── recursos-generales/     ← fuentes verificables transversales
 ```
+
+---
+
+## 🛠️ Cómo trabajamos (resumen de 5 líneas)
+
+1. **Especificás antes de codificar:** `SPEC.md` con la plantilla oficial.
+2. **Registrás decisiones:** `docs/adr/ADR-00X` con la plantilla MADR.
+3. **Configurás tu arnés:** `.opencoderules` limita a tu agente IA local (OpenCode).
+4. **Supervisión crítica:** revisás línea por línea todo lo generado por IA.
+5. **Entregás por Pull Request** en TU repositorio individual de la organización `IES9018`.
+
+Detalle completo y reglas duras: [INSTRUCCIONES_ORGANIZACION.md](./INSTRUCCIONES_ORGANIZACION.md).
+
+---
+
+## ❓ Si te perdés
+
+| Situación | Ir a |
+|---|---|
+| ¿Qué es SDD / Vibe Coding / arnés? | Unidad 1 §2 + [glosario del repo de TPs](https://github.com/IES9018/proyecto-adi-2026/blob/main/glosario.md) |
+| ¿Cómo creo mi repositorio individual? | Reglas en [INSTRUCCIONES_ORGANIZACION.md](./INSTRUCCIONES_ORGANIZACION.md) §1 |
+| ¿Cómo se evalúa? | Tabla de criterios del [repo de TPs](https://github.com/IES9018/proyecto-adi-2026#-reglas-de-gobernanza-y-formato) + [rúbrica](https://github.com/IES9018/proyecto-adi-2026/blob/main/rubrica-evaluacion.md) |
+| ¿Dónde está el programa oficial? | [Planificaciones/ del repo de TPs](https://github.com/IES9018/proyecto-adi-2026/tree/main/Planificaciones) |
+| Tengo una duda puntual | Abrí un **Issue** en el repo correspondiente |
