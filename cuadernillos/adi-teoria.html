@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>adi-teoria</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  /* ============================================================
+   COLECCIÓN CUADERNILLOS IES 9-018 · Sistema visual único
+   Print-first · fondos ≤ 12% gris · color con significado fijo
+   Fuente de verdad: cuadernillos-discovery/VISUAL_SYSTEM_PROPOSAL.md
+   ============================================================ */
+
+:root{
+  /* --- Barra lateral: ÚNICO grosor para todos los bloques --- */
+  --bar:3mm;
+  /* --- Paleta semántica (una definición por color) --- */
+  --tinta:#143b66;      /* azul de identidad: títulos, portada, th */
+  --azul:#1f5fa8;       /* concepto */
+  --verde:#1f8a70;      /* en simple / probalo */
+  --rojo:#b3402f;       /* error frecuente */
+  --ambar:#c77d0a;      /* ¿por qué importa? */
+  --ocre:#d9a400;       /* recordá */
+  --naranja:#d35400;    /* en el proyecto */
+  --violeta:#6b4fa0;    /* razonamiento: paso a paso y ¿qué pasaría si? */
+  --gris:#5a6470;       /* neutro */
+  --carbon:#3a424b;     /* código / checkpoint */
+  --texto:#0a0d12;
+  --chip:#e4e8ec;       /* código en línea */
+  --codigo-fondo:#f4f6f8;
+}
+*{box-sizing:border-box}
+
+/* ---------- Cuerpo ---------- */
+body{font:11pt/1.45 Georgia,'Times New Roman',serif;color:var(--texto);
+     margin:0 auto;padding:14mm 16mm 20mm 20mm;max-width:186mm}
+h1{font:700 21pt/1.15 'Segoe UI',Helvetica,sans-serif;color:var(--tinta);margin:0 0 4mm;page-break-after:avoid}
+h2{font:700 15pt/1.25 'Segoe UI',sans-serif;color:var(--tinta);margin:7mm 0 3mm;break-after:avoid}
+h3{font:700 11.5pt/1.3 'Segoe UI',sans-serif;color:#23303d;margin:4mm 0 2mm;break-after:avoid}
+p{margin:0 0 2.4mm;orphans:3;widows:3;text-align:justify}
+ul,ol{margin:0 0 2.6mm 5.5mm}li{margin-bottom:1.2mm}
+strong{color:#101317}
+
+/* ---------- Bloques pedagógicos ----------
+   MISMA barra (--bar), MISMO padding, MISMO radio, MISMA alineación.
+   Se distinguen por color de barra + ETIQUETA ::before (no solo color). */
+.concepto,.simple,.importa,.error,.recorda,.proyecto,.probalo,.si,.paso,.checkpoint{
+  border-left:var(--bar) solid var(--gris);padding:2.6mm 4mm 2.6mm 4mm;margin:3mm 0;
+  border-radius:0 2mm 2mm 0;page-break-inside:avoid}
+.concepto::before,.simple::before,.importa::before,.error::before,.recorda::before,
+.proyecto::before,.probalo::before,.si::before,.paso::before,.checkpoint::before{
+  display:block;font:700 7.5pt 'Segoe UI',sans-serif;letter-spacing:.12em;
+  text-transform:uppercase;margin:0 0 1.4mm}
+.concepto{background:#dce8f5;border-left-color:var(--azul)}
+.concepto::before{content:"Concepto clave";color:var(--azul)}
+.simple{background:#e1f0eb;border-left-color:var(--verde);border:1px dashed #a0c9b4;border-left-style:solid;border-left-width:var(--bar)}
+.simple::before{content:"En simple";color:var(--verde)}
+.importa{background:#f8edd4;border-left-color:var(--ambar)}
+.importa::before{content:"¿Por qué importa?";color:var(--ambar)}
+.error{background:#f8ded9;border-left-color:var(--rojo)}
+.error::before{content:"Error frecuente";color:var(--rojo)}
+.recorda{background:#faf2d4;border-left-color:var(--ocre)}
+.recorda::before{content:"Recordá";color:#8a6a00}
+.proyecto{background:#fae6d4;border-left-color:var(--naranja)}
+.proyecto::before{content:"En el proyecto";color:var(--naranja)}
+.probalo{background:#e1f0eb;border-left-color:var(--verde)}
+.probalo::before{content:"Probalo";color:var(--verde)}
+.si{background:#eee4f5;border-left-color:var(--violeta)}
+.si::before{content:"¿Qué pasaría si…?";color:var(--violeta)}
+.paso{background:#ebe1f2;border-left-color:var(--violeta)}
+.paso::before{content:"Paso a paso";color:var(--violeta)}
+.checkpoint{background:#e7eaee;border-left-color:var(--carbon);box-shadow:0 1mm 3mm rgba(0,0,0,.14)}
+.checkpoint::before{content:"Checkpoint — respondé sin mirar";color:var(--carbon)}
+
+/* ---------- Código: fondo claro, UNA barra, UN padding ----------
+   Reglas separadas para wrapper y pre interno (causa del bug corregida). */
+.sourceCode{background:var(--codigo-fondo);border:none;border-left:var(--bar) solid var(--carbon);
+  border-radius:0 2mm 2mm 0;padding:2.8mm 4mm;margin:3mm 0;page-break-inside:avoid;overflow-x:auto}
+.sourceCode pre{margin:0;padding:0;background:transparent;border:none;border-left:none;
+  border-radius:0;overflow:visible;white-space:pre-wrap;overflow-wrap:anywhere}
+/* TERMINAL (code.sourceCode): neutraliza la maquinaria de números de línea de pandoc
+   (span inline-block + text-indent de print para pre.numberSource) que fragmenta,
+   desplaza y recorta las líneas. Solo afecta a esta categoría. */
+.sourceCode code.sourceCode{white-space:pre-wrap;position:relative}
+.sourceCode code.sourceCode > span{display:block;line-height:inherit;text-indent:0;padding-left:0;position:relative;z-index:1}
+.sourceCode code.sourceCode > span > a:first-child{display:none}
+.sourceCode code.sourceCode > span > a:first-child::before{content:none;text-decoration:none}
+pre{background:var(--codigo-fondo);border:none;border-left:var(--bar) solid var(--carbon);
+  border-radius:0 2mm 2mm 0;padding:2.8mm 4mm;margin:3mm 0;page-break-inside:avoid;
+  font:9pt/1.5 Consolas,'Cascadia Mono',monospace;color:#1a1d21;white-space:pre-wrap;overflow-wrap:anywhere}
+code{background:var(--chip);color:#14171c;padding:0 1.5mm;border-radius:1.5mm;
+  font:8.8pt/1.35 Consolas,'Cascadia Mono',monospace;overflow-wrap:anywhere}
+/* REGLA DE RELACIÓN: dentro de un bloque preformateado, el <code> es transparente.
+   Una sola superficie — el estilo chip es SOLO para código en línea. */
+pre code{background:transparent;color:inherit;padding:0;border:0;border-radius:0;
+  box-shadow:none;font:inherit;line-height:inherit;overflow-wrap:inherit;display:inline}
+
+/* ---------- Tablas: cabecera clara + filete ---------- */
+table{width:100%;border-collapse:collapse;margin:3mm 0;font-size:9.8pt;page-break-inside:avoid}
+th{background:#e8eef5;color:var(--tinta);font:700 8.5pt 'Segoe UI',sans-serif;padding:2mm 2.5mm;
+   border-top:1.5mm solid var(--tinta);border-bottom:.8pt solid #b9c6d4;text-align:left}
+td{padding:2mm 2.5mm;border-bottom:.6pt solid #ccd3da;overflow-wrap:break-word}
+tr:nth-child(even) td{background:#f6f8fa}
+td code{font-size:8.3pt}
+
+/* ---------- Figuras / diagramas SVG ---------- */
+img{max-width:100%;height:auto;border:.6pt solid #d4dae0;border-radius:2mm;
+    background:#fbfcfd;padding:2mm;page-break-inside:avoid}
+p>em:only-child{display:block;text-align:center;color:var(--gris);font-size:9pt;margin:1mm 0 3mm}
+
+/* ---------- Citas ---------- */
+blockquote{background:#eaf1f9;border-left:var(--bar) solid var(--azul);padding:2.5mm 4mm;margin:3mm 0;
+  border-radius:0 2mm 2mm 0}
+
+/* ---------- Links ---------- */
+a{color:var(--tinta);text-decoration:underline;text-decoration-color:#9db3cc;text-underline-offset:1.5pt}
+
+/* ---------- Índice ---------- */
+nav#TOC{border:.6pt solid #ccd3da;border-radius:2mm;padding:5mm 7mm;margin:6mm 0 0;
+  background:#fbfcfd;page-break-after:always}
+nav#TOC h2{margin:0 0 3mm;font-size:13pt}
+nav#TOC ul{list-style:none;margin:0;padding:0}
+nav#TOC li{margin:0 0 1.8mm;font:10.5pt/1.4 'Segoe UI',sans-serif}
+nav#TOC>ul>li{font-weight:700}
+nav#TOC a{color:var(--tinta);text-decoration:none}
+
+/* ---------- Portada (colección) ---------- */
+.portada{background:var(--tinta);color:#fff;width:210mm;min-height:292mm;
+  padding:22mm 20mm;margin:6mm auto 0;border-radius:3mm;box-shadow:0 2px 10px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;justify-content:space-between}
+.portada .kicker{font:700 9pt 'Segoe UI',sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#8fb6e0}
+.portada .num{font:700 76pt/1 'Segoe UI',sans-serif;margin:6mm 0 3mm}
+.portada h1{color:#fff;font-size:27pt;line-height:1.12;margin:0 0 5mm;page-break-after:auto}
+.portada .sub{font:400 12.5pt/1.45 'Segoe UI',sans-serif;color:#c9dcf1;max-width:150mm}
+.portada .meta{font:10pt/1.75 'Segoe UI',sans-serif;color:#c9dcf1}
+.portada .meta b{color:#fff}
+.portada .repo{font:9.5pt Consolas,monospace;color:#fff}
+.portada .barra{height:5mm;border-radius:1mm;margin-top:6mm;
+  background:linear-gradient(90deg,var(--naranja) 0 22%,var(--verde) 22% 44%,#4c8fd6 44% 66%,var(--ocre) 66% 84%,var(--rojo) 84% 100%)}
+
+/* ---------- Cierre de unidad ---------- */
+.cierre{page-break-inside:avoid}
+.cierre>p:last-child{color:var(--gris);font:italic 9.5pt 'Segoe UI',sans-serif;
+  border-top:.6pt solid #dde2e7;padding-top:2mm;margin:4mm 0 0}
+
+/* ---------- Saltos de página entre unidades ---------- */
+section.level1{page-break-before:always}
+section.level1:first-of-type{page-break-before:auto}
+
+/* ---------- Impresión A4 ---------- */
+@media print{
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  @page{size:A4;margin:18mm 16mm 18mm 20mm}   /* canal de encuadernación a la izquierda */
+  @page :first{margin:0}                       /* portada a sangre */
+  body{padding:0;max-width:none}
+  .portada{width:210mm;height:296.5mm;min-height:0;margin:0;border-radius:0;box-shadow:none;page-break-after:always}
+  nav#TOC{margin:0 0 6mm;border-radius:0;border:none;border-bottom:.6pt solid #ccd3da}
+}
+
+</style>
+</head>
+<body>
+<div class="portada">
+  <div>
+    <div class="kicker">Cuadernillos de Desarrollo de Software</div>
+    <div class="num">01</div>
+    <h1>Arquitectura y Diseño<br>de Interfaces<br>Teoría</h1>
+    <div class="sub">El mapa conceptual de la materia: del Vibe Coding al Spec-Driven Development, estilos arquitectónicos, C4, ADR, usabilidad, interfaces web y mobile, CI/CD.</div>
+    <div class="barra"></div>
+  </div>
+  <div class="meta">
+    <b>Arquitectura y Diseño de Interfaces</b> · 3° año · Ciclo 2026<br>
+    Tecnicatura Superior en Desarrollo de Software · IES 9-018 · Prof. Paulo Alvarez<br><br>
+    Fuente primaria: <span class="repo">github.com/IES9018/ADI-teoria-y-recursos</span><br>
+    Se lee junto con: <span class="repo">proyecto-adi-2026</span> · <span class="repo">proyecto-pp3-2026</span>
+  </div>
+</div>
+<nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Índice</h2>
+<ul>
+<li><a href="#cómo-usar-este-cuadernillo"
+id="toc-cómo-usar-este-cuadernillo">Cómo usar este cuadernillo</a></li>
+<li><a href="#del-vibe-coding-al-spec-driven-development"
+id="toc-del-vibe-coding-al-spec-driven-development">Del Vibe Coding al
+Spec-Driven Development</a></li>
+<li><a href="#arquitectura-de-software"
+id="toc-arquitectura-de-software">Arquitectura de Software</a></li>
+<li><a href="#diseño-de-interfaces" id="toc-diseño-de-interfaces">Diseño
+de Interfaces</a></li>
+<li><a href="#arquitectura-web" id="toc-arquitectura-web">Arquitectura
+Web</a></li>
+<li><a href="#arquitectura-mobile"
+id="toc-arquitectura-mobile">Arquitectura Mobile</a></li>
+<li><a href="#cicd-y-herramientas" id="toc-cicd-y-herramientas">CI/CD y
+Herramientas</a></li>
+<li><a href="#mapa-conceptual-final" id="toc-mapa-conceptual-final">Mapa
+conceptual final</a></li>
+</ul>
+</nav>
+<section id="cómo-usar-este-cuadernillo" class="level1">
+<h1>Cómo usar este cuadernillo</h1>
+<blockquote>
+<p><strong>Propósito:</strong> que tengas el mapa conceptual de la
+materia antes de abrir cualquier archivo del repositorio. Este
+cuadernillo no reemplaza el repositorio de teoría: lo estructura,
+relaciona sus conceptos y te dice dónde profundizar.</p>
+</blockquote>
+<section id="el-mapa-de-los-tres-repositorios" class="level2">
+<h2>El mapa de los tres repositorios</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Repositorio</th>
+<th>Qué contiene</th>
+<th>Cuadernillo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IES9018/ADI-teoria-y-recursos</code></td>
+<td>Teoría: conceptos, definiciones, ejemplos, analogías, fuentes</td>
+<td><strong>Este</strong> — Teoría</td>
+</tr>
+<tr>
+<td><code>IES9018/proyecto-adi-2026</code></td>
+<td>Consignas de TP, plantillas, proyecto modelo con código real</td>
+<td>Cuadernillo 02 — Proyecto</td>
+</tr>
+<tr>
+<td><code>IES9018/proyecto-pp3-2026</code></td>
+<td>Reglas de los 3 sprints, checklists, rúbricas</td>
+<td>Cuadernillo 03 — PP3</td>
+</tr>
+</tbody>
+</table>
+<div class="recorda">
+<p>Estudiás la teoría acá; después aplicás los conceptos en los TP del
+repositorio de proyecto.</p>
+</div>
+</section>
+<section id="cómo-está-organizado" class="level2">
+<h2>Cómo está organizado</h2>
+<p>Cada unidad del cuadernillo corresponde a una unidad del repositorio.
+Seguí el orden: los conceptos se construyen uno sobre otro.</p>
+</section>
+<section id="sistema-visual-de-la-colección" class="level2">
+<h2>Sistema visual de la colección</h2>
+<p>Cada bloque de color tiene un significado fijo. Si ves un recuadro y
+no entendés qué significa, es un error del cuadernillo: reportalo.</p>
+<div class="concepto">
+<p><strong>CONCEPTO CLAVE:</strong> definiciones centrales de la
+materia.</p>
+</div>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> explicación intuitiva o analogía
+cotidiana.</p>
+</div>
+<div class="importa">
+<p><strong>¿POR QUÉ IMPORTA?</strong> consecuencia práctica de saber o
+no saber esto.</p>
+</div>
+<div class="error">
+<p><strong>ERROR FRECUENTE:</strong> equivocación común y cómo
+evitarla.</p>
+</div>
+<div class="no-confundir">
+<p><strong>NO CONFUNDIR:</strong> dos conceptos que parecen iguales pero
+no lo son.</p>
+</div>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> dónde aparece este concepto en el
+proyecto integrador.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>CHECKPOINT:</strong> preguntas breves para verificar que
+entendiste antes de seguir.</p>
+</div></div></section>
+<section id="referencias-a-otras-unidades" class="level2">
+<h2>Referencias a otras unidades</h2>
+<p>Cuando veas <code>VER EN EL REPO → ruta</code>, es material de
+profundización que no está reproducido en el cuadernillo. Consultalo
+cuando lo necesites.</p>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Cuántos repositorios forman esta colección y qué rol cumple cada
+uno?</li>
+<li>¿Qué significa que un bloque tenga un color fijo en esta
+colección?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="del-vibe-coding-al-spec-driven-development" class="level1">
+<h1>Del Vibe Coding al Spec-Driven Development</h1>
+<blockquote>
+<p>La diferencia entre un experimento y un proyecto profesional es la
+especificación. Esta unidad te da el marco de trabajo para pasar de
+“probar código” a “construir con criterio”.</p>
+</blockquote>
+<section id="el-problema-vibe-coding" class="level2">
+<h2>El problema: Vibe Coding</h2>
+<p>El Vibe Coding consiste en pedirle a una IA que genere código con
+descripciones vagas y aceptar el resultado sin auditoría. El sistema
+funciona hasta que crece, y entonces nadie sabe por qué hace lo que
+hace.</p>
+<div class="error">
+<p><strong>ERROR FRECUENTE:</strong> usar la IA para producir código sin
+haber definido primero qué debe hacer ese código. El resultado es deuda
+técnica invisible: funciona en el demo pero no escala, no se mantiene y
+no se audita.</p>
+</div>
+</section>
+<section id="la-solución-spec-driven-development-sdd" class="level2">
+<h2>La solución: Spec-Driven Development (SDD)</h2>
+<p>SDD invierte el orden: <strong>primero especificás, después
+codificás</strong>.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Etapa</th>
+<th>Qué hacés</th>
+<th>Artefacto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Especificar</td>
+<td>Definís qué hace el sistema y qué NO hace</td>
+<td><code>SPEC.md</code></td>
+</tr>
+<tr>
+<td>2. Decidir</td>
+<td>Documentás decisiones de arquitectura con alternativas</td>
+<td><code>docs/adr/ADR-00X.md</code></td>
+</tr>
+<tr>
+<td>3. Arnés</td>
+<td>Configurás las reglas que tu agente IA debe respetar</td>
+<td><code>.opencoderules</code></td>
+</tr>
+<tr>
+<td>4. Generar</td>
+<td>La IA produce código bajo esas restricciones</td>
+<td>Código fuente</td>
+</tr>
+<tr>
+<td>5. Auditar</td>
+<td>Revisás línea por línea antes de hacer commit</td>
+<td>Pull Request + checklist</td>
+</tr>
+</tbody>
+</table>
+<div class="concepto">
+<p><strong>SPEC.md:</strong> archivo en la raíz del repo que describe el
+propósito, alcance, interfaz, reglas de dominio y Non-Goals del sistema.
+No es un documento de diseño: es el contrato contra el que se mide si el
+código es correcto.</p>
+</div>
+</section>
+<section id="non-goals" class="level2">
+<h2>Non-Goals</h2>
+<p>Los Non-Goals son tan importantes como los goals. Declarar
+explícitamente lo que NO hace esta versión evita que la IA (o el equipo)
+agregue funcionalidades no solicitadas.</p>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> si no escribís “esta versión no
+implementa OAuth2”, la IA puede intentar agregarlo, gastar tokens y
+generar código que no pidieron.</p>
+</div>
+</section>
+<section id="el-arnés-.opencoderules" class="level2">
+<h2>El arnés (<code>.opencoderules</code>)</h2>
+<p>El arnés es un archivo de reglas en la raíz del repositorio que
+limita el comportamiento del agente IA. Define tres zonas:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Zona</th>
+<th>Qué hace</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alcance permitido</td>
+<td>Qué tecnologías, patrones y estándares debe usar</td>
+<td>“Usar TypeScript con tipado estricto”</td>
+</tr>
+<tr>
+<td>Estándares obligatorios</td>
+<td>Convenciones que no se negocian</td>
+<td>“Conventional Commits, SPEC primero”</td>
+</tr>
+<tr>
+<td>Prácticas prohibidas</td>
+<td>Lo que la IA no debe hacer</td>
+<td>“No usar <code>any</code>, no exponer secrets”</td>
+</tr>
+</tbody>
+</table>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> tu repositorio debe incluir
+<code>SPEC.md</code> y <code>.opencoderules</code>. La plantilla de SPEC
+está en <code>templates/SPEC-template.md</code> del repo
+<code>proyecto-adi-2026</code>. Los detalles de implementación por
+sprint se explican en el Cuadernillo 03.</p>
+</div>
+<div class="no-confundir">
+<p><strong>Vibe Coding ≠ SDD.</strong> El primero delega el diseño en la
+IA; el segundo pone al estudiante como Arquitecto que especifica,
+decide, dirige y audita. La IA ejecuta, no decide.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Cuál es el orden correcto del flujo SDD?</li>
+<li>¿Qué es un Non-Goal y por qué es importante declararlo?</li>
+<li>¿Qué zona del arnés impide que la IA use una tecnología no
+autorizada?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="arquitectura-de-software" class="level1">
+<h1>Arquitectura de Software</h1>
+<blockquote>
+<p>Arquitectar no es dibujar cajas y flechas: es tomar decisiones
+estructurales caras de revertir y registrarlas para que el equipo
+entienda por qué el sistema es como es.</p>
+</blockquote>
+<section id="conceptos-fundamentales" class="level2">
+<h2>Conceptos fundamentales</h2>
+<div class="concepto">
+<p><strong>Arquitectura de software:</strong> la estructura o
+estructuras del sistema, que comprenden los elementos del software, sus
+propiedades visibles externamente y las relaciones entre ellos (Bass,
+Clements, Kazman).</p>
+</div>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Término</th>
+<th>Definición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Componente</strong></td>
+<td>Pieza con responsabilidad clara e interfaz (ej: módulo de
+autenticación)</td>
+</tr>
+<tr>
+<td><strong>Conector</strong></td>
+<td>Canal de comunicación entre componentes (ej: API REST, cola de
+mensajes)</td>
+</tr>
+<tr>
+<td><strong>Propiedad</strong></td>
+<td>Característica medible de un componente (rendimiento, seguridad,
+disponibilidad)</td>
+</tr>
+<tr>
+<td><strong>Vista arquitectónica</strong></td>
+<td>Lectura del sistema desde un ángulo: módulos, ejecución,
+despliegue</td>
+</tr>
+</tbody>
+</table>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> la arquitectura es el plano estructural
+del sistema. Cambiarla después de construir es carísimo, igual que mover
+una columna de carga en un edificio terminado.</p>
+</div>
+<blockquote>
+<p>VER EN EL REPO →
+<code>unidad-2-arquitectura-de-software/01-conceptos-generales/README.md</code></p>
+</blockquote>
+</section>
+<section id="estilos-arquitectónicos" class="level2">
+<h2>Estilos arquitectónicos</h2>
+<p>Un estilo es una familia de decisiones repetibles sobre cómo se
+organizan los componentes.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Estilo</th>
+<th>Cómo organiza</th>
+<th>Cuándo elegirlo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Capas</strong></td>
+<td>Separación vertical estricta (presentación → lógica → datos)</td>
+<td>Sistemas empresariales, MVPs</td>
+</tr>
+<tr>
+<td><strong>Tuberías y filtros</strong></td>
+<td>Componentes encadenados donde cada uno transforma entrada en
+salida</td>
+<td>Compiladores, ETL, streams</td>
+</tr>
+<tr>
+<td><strong>MVC</strong></td>
+<td>Separa datos (Modelo), interfaz (Vista) y lógica de entrada
+(Controlador)</td>
+<td>Aplicaciones con interfaz gráfica</td>
+</tr>
+<tr>
+<td><strong>Hexagonal</strong></td>
+<td>El dominio vive al centro; el exterior se conecta por puertos y
+adaptadores intercambiables</td>
+<td>Sistemas donde el dominio es más valioso que la tecnología</td>
+</tr>
+</tbody>
+</table>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> el proyecto modelo del repositorio
+<code>proyecto-adi-2026</code> usa arquitectura hexagonal. Ver
+<code>03_ARQUITECTURA/</code> para el diagrama de contenedores y la
+justificación en los ADR.</p>
+</div>
+<blockquote>
+<p>Comparativa detallada:
+<code>unidad-2-arquitectura-de-software/02-estilos-arquitectonicos/README.md</code></p>
+</blockquote>
+</section>
+<section id="modelo-c4" class="level2">
+<h2>Modelo C4</h2>
+<p>El modelo C4 (Simon Brown) proporciona cuatro niveles de zoom para
+comunicar la arquitectura a distintas audiencias.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Qué muestra</th>
+<th>Para quién</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C1 — Contexto</strong></td>
+<td>El sistema y su entorno: usuarios, sistemas externos</td>
+<td>Todos los stakeholders</td>
+</tr>
+<tr>
+<td><strong>C2 — Contenedores</strong></td>
+<td>Aplicaciones, servicios, bases de datos y protocolos</td>
+<td>Equipo de desarrollo</td>
+</tr>
+<tr>
+<td><strong>C3 — Componentes</strong></td>
+<td>Componentes internos de un contenedor</td>
+<td>Desarrolladores del módulo</td>
+</tr>
+<tr>
+<td><strong>C4 — Código</strong></td>
+<td>Clases, interfaces, relaciones de implementación</td>
+<td>Quien escribe código</td>
+</tr>
+</tbody>
+</table>
+<p>Cada diagrama debe responder <strong>una pregunta</strong>. Si no
+podés escribir la pregunta al pie, el diagrama no cumple su función.</p>
+<blockquote>
+<p>VER EN EL REPO →
+<code>unidad-2-arquitectura-de-software/04-vistas-y-escenarios/README.md</code></p>
+</blockquote>
+</section>
+<section id="adr-architecture-decision-record" class="level2">
+<h2>ADR (Architecture Decision Record)</h2>
+<p>Un ADR documenta una decisión de arquitectura, su contexto, las
+alternativas consideradas y sus consecuencias. Es un registro inmutable:
+no se modifica, se crea uno nuevo si la decisión cambia.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Sección</th>
+<th>Qué contiene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Título</strong></td>
+<td>ADR-NNN — título descriptivo</td>
+</tr>
+<tr>
+<td><strong>Contexto</strong></td>
+<td>¿Qué problema motiva esta decisión?</td>
+</tr>
+<tr>
+<td><strong>Decisión</strong></td>
+<td>¿Qué elegimos y por qué?</td>
+</tr>
+<tr>
+<td><strong>Alternativas</strong></td>
+<td>¿Qué otras opciones consideramos y por qué las descartamos?</td>
+</tr>
+<tr>
+<td><strong>Consecuencias</strong></td>
+<td>¿Qué cambia en el sistema con esta decisión?</td>
+</tr>
+</tbody>
+</table>
+<p>Plantilla oficial: <code>templates/ADR-template.md</code> en el repo
+<code>proyecto-adi-2026</code>.</p>
+<div class="concepto">
+<p><strong>Regla de oro:</strong> ninguna decisión técnica importante
+queda en la cabeza de una sola persona. Si no está documentada en un
+ADR, no pasó la auditoría.</p>
+</div>
+</section>
+<section id="requisitos-funcionales-y-no-funcionales" class="level2">
+<h2>Requisitos funcionales y no funcionales</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Define</th>
+<th>Dónde vive</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Funcional</strong></td>
+<td>Qué hace el sistema</td>
+<td><code>SPEC.md</code>, historias de usuario</td>
+</tr>
+<tr>
+<td><strong>No funcional</strong> (atributo de calidad)</td>
+<td>Cómo lo hace: rendimiento, seguridad, disponibilidad</td>
+<td><code>SPEC.md</code> + ADR</td>
+</tr>
+</tbody>
+</table>
+<p>La arquitectura está profundamente ligada a los atributos de calidad.
+Un requisito funcional puede cumplirse con muchas arquitecturas; un
+requisito no funcional casi siempre fuerza una estructura
+específica.</p>
+<div class="error">
+<p><strong>ERROR FRECUENTE:</strong> definir la arquitectura antes de
+conocer los requisitos no funcionales. Construir una API REST con
+microservicios cuando un monolito modular alcanza es sobrediseño.
+Construir un monolito cuando el sistema necesita escalar por servicio
+individual es deuda técnica.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Cuál es la diferencia entre un componente y un conector?</li>
+<li>¿Qué información mostrarías en un C1 que todavía no debería aparecer
+en un C2?</li>
+<li>¿Por qué un ADR no se modifica cuando la decisión cambia?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="diseño-de-interfaces" class="level1">
+<h1>Diseño de Interfaces</h1>
+<blockquote>
+<p>Una interfaz no se diseña para quedar bonita: se diseña para que una
+persona concreta logre su objetivo con la menor fricción posible.</p>
+</blockquote>
+<section id="hci-human-computer-interaction" class="level2">
+<h2>HCI (Human-Computer Interaction)</h2>
+<p>La HCI estudia cómo las personas usan sistemas computacionales y cómo
+diseñar para minimizar error y esfuerzo. No es opinión: es evidencia
+acumulada durante décadas.</p>
+<div class="concepto">
+<p><strong>Usabilidad:</strong> eficacia, eficiencia y satisfacción con
+las que un usuario logra sus objetivos (ISO 9241). Es medible, no
+decorativa.</p>
+</div>
+<div class="no-confundir">
+<p><strong>UX ≠ UI.</strong> UX es la experiencia completa del recorrido
+(antes, durante y después del uso). UI es la capa visible e interactiva.
+Una interfaz linda puede sostener una experiencia pésima si el usuario
+no encuentra lo que busca.</p>
+</div>
+</section>
+<section id="las-10-heurísticas-de-usabilidad-jakob-nielsen"
+class="level2">
+<h2>Las 10 heurísticas de usabilidad (Jakob Nielsen)</h2>
+<p>Son principios de diseño, no opiniones. Se aplican antes de escribir
+código, durante el diseño de la interfaz.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Heurística</th>
+<th>En criollo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Visibilidad del estado del sistema</td>
+<td>El usuario siempre sabe qué está pasando</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Correspondencia sistema-mundo real</td>
+<td>Usá el lenguaje del usuario, no el del sistema</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Control y libertad del usuario</td>
+<td>“Deshacer” salva vidas</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Consistencia y estándares</td>
+<td>Misma palabra = misma acción siempre</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Prevención de errores</td>
+<td>Mejor que dar un buen mensaje de error</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Reconocer antes que recordar</td>
+<td>Mostrá opciones visibles, no obligues a recordar</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Flexibilidad y eficiencia de uso</td>
+<td>Atajos para expertos sin romper para novatos</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Diseño estético y minimalista</td>
+<td>Cada información extra compite con la relevante</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ayudar a reconocer y recuperarse de errores</td>
+<td>Decí qué pasó y cómo solucionarlo</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Ayuda y documentación</td>
+<td>Idealmente no hace falta; si hace falta, que sea buscable</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>VER EN EL REPO →
+<code>unidad-3-diseno-de-interfaces/01-hci-y-usabilidad/README.md</code></p>
+</blockquote>
+</section>
+<section id="ergonomía-de-software" class="level2">
+<h2>Ergonomía de software</h2>
+<p>Adaptar la interfaz a las capacidades humanas no es opcional: es
+ingeniería.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Principio</th>
+<th>Regla</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memoria de trabajo limitada</td>
+<td>No obligues al usuario a recordar información de una pantalla a
+otra</td>
+</tr>
+<tr>
+<td>Objetivos de toque</td>
+<td>Área táctil mínima 44×44 px en mobile</td>
+</tr>
+<tr>
+<td>Jerarquía visual</td>
+<td>Lo más importante se ve primero (tamaño, color, posición)</td>
+</tr>
+<tr>
+<td>Contraste</td>
+<td>Relación 4.5:1 entre texto y fondo (WCAG 2.2 AA)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="métodos-de-diseño" class="level2">
+<h2>Métodos de diseño</h2>
+<p>De menor a mayor fidelidad, cada método responde una pregunta
+distinta.</p>
+<div class="concepto">
+<p><strong>Wireframe:</strong> boceto de baja fidelidad que define
+estructura y jerarquía, sin color ni tipografía final. Se hace en papel
+o herramientas como Excalidraw.</p>
+<p><strong>Mockup:</strong> representación estática de alta fidelidad
+con colores, tipografía y componentes finales.</p>
+<p><strong>Prototipo:</strong> versión navegable que simula el flujo
+real para testear antes de programar.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Pregunta que responde</th>
+<th>Tiempo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wireframe</td>
+<td>¿Está todo lo necesario?</td>
+<td>Minutos</td>
+</tr>
+<tr>
+<td>Mockup</td>
+<td>¿Se ve y se lee bien?</td>
+<td>Horas</td>
+</tr>
+<tr>
+<td>Prototipo</td>
+<td>¿El recorrido funciona?</td>
+<td>Horas–días</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sistema-de-diseño" class="level2">
+<h2>Sistema de diseño</h2>
+<p>Un sistema de diseño es una biblioteca de tokens (colores,
+espaciados, tipografía) + componentes reutilizables + reglas de uso. No
+es un archivo de Figma: es el contrato visual del equipo.</p>
+<p>Composición mínima:</p>
+<ul>
+<li><strong>Tokens:</strong> paleta con contraste validado, escala
+tipográfica, espaciados en múltiplos de 4/8 px</li>
+<li><strong>Componentes:</strong> botones, inputs, tablas, cards con sus
+estados (default, hover, focus, disabled, error)</li>
+<li><strong>Reglas:</strong> cuándo usar cada componente, qué no
+hacer</li>
+</ul>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> tu <code>SPEC.md</code> debe incluir
+los tokens del sistema de diseño. La especificación visual de tu
+interfaz es parte del contrato, no un archivo separado.</p>
+</div>
+<blockquote>
+<p>VER EN EL REPO →
+<code>unidad-3-diseno-de-interfaces/05-patrones-de-diseno/README.md</code></p>
+</blockquote>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Cuál es la diferencia entre wireframe, mockup y prototipo?</li>
+<li>¿Por qué el tamaño mínimo de un botón táctil no es una decisión
+estética sino de ingeniería?</li>
+<li>Nombrá tres heurísticas de Nielsen y explicá cada una en una
+frase.</li>
+</ol>
+</div></div></section>
+</section>
+<section id="arquitectura-web" class="level1">
+<h1>Arquitectura Web</h1>
+<blockquote>
+<p>La web moderna es un sistema distribuido donde la pregunta “¿dónde se
+arma la pantalla?” define rendimiento, SEO, costos de infraestructura y
+experiencia de usuario.</p>
+</blockquote>
+<section id="modelo-cliente-servidor" class="level2">
+<h2>Modelo cliente-servidor</h2>
+<p>El cliente (navegador) solicita recursos; el servidor procesa y
+responde bajo el protocolo HTTP, que es inherentemente sin estado. Cada
+petición es independiente.</p>
+</section>
+<section id="estrategias-de-renderizado" class="level2">
+<h2>Estrategias de renderizado</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Estrategia</th>
+<th>¿Dónde se arma la página?</th>
+<th>Primer render</th>
+<th>Carga del servidor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CSR</strong> (Client-Side Rendering)</td>
+<td>Navegador del usuario</td>
+<td>Lento inicial</td>
+<td>Baja</td>
+</tr>
+<tr>
+<td><strong>SSR</strong> (Server-Side Rendering)</td>
+<td>Servidor en cada request</td>
+<td>Rápido</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><strong>SSG</strong> (Static Site Generation)</td>
+<td>Servidor en build</td>
+<td>Instantáneo</td>
+<td>Casi nula</td>
+</tr>
+<tr>
+<td><strong>ISR</strong> (Incremental Static Regeneration)</td>
+<td>Servidor en build + revalidación</td>
+<td>Instantáneo para páginas cacheadas</td>
+<td>Baja</td>
+</tr>
+</tbody>
+</table>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> CSR es comprar comida congelada y
+cocinarla en casa (viaja liviana, tu horno trabaja). SSR es comer en el
+salón (el chef prepara todo, el plato llega listo). SSG es el buffet
+preparado a la mañana (sale instantáneo, se regenera cada tanto).</p>
+</div>
+</section>
+<section id="rest-y-contratos-de-api" class="level2">
+<h2>REST y contratos de API</h2>
+<p>REST no es un protocolo: es un estilo arquitectónico donde los
+recursos se identifican por URL y se manipulan con verbos HTTP.</p>
+<table>
+<thead>
+<tr>
+<th>Verbo</th>
+<th>Operación</th>
+<th>Código HTTP esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET</code></td>
+<td>Leer recurso</td>
+<td>200 OK</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td>Crear recurso</td>
+<td>201 Created</td>
+</tr>
+<tr>
+<td><code>PUT</code> / <code>PATCH</code></td>
+<td>Actualizar recurso</td>
+<td>200 OK / 204 No Content</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Eliminar recurso</td>
+<td>204 No Content</td>
+</tr>
+<tr>
+<td></td>
+<td>Error de validación</td>
+<td>400 Bad Request</td>
+</tr>
+<tr>
+<td></td>
+<td>Conflicto</td>
+<td>409 Conflict</td>
+</tr>
+</tbody>
+</table>
+<div class="concepto">
+<p><strong>OpenAPI:</strong> estándar para describir contratos REST en
+formato YAML o JSON. Herramientas como Swagger generan documentación
+interactiva y validan que la implementación cumpla el contrato. En la
+materia, el contrato se escribe primero en <code>SPEC.md</code> y se
+expone como <code>api-contracts.yaml</code>.</p>
+</div>
+</section>
+<section id="stack-de-referencia" class="level2">
+<h2>Stack de referencia</h2>
+<p>La materia utiliza: <strong>Next.js</strong> (SSR + CSR híbrido con
+server y client components) + <strong>FastAPI</strong> (Python,
+validación Pydantic, OpenAPI automático) + <strong>PostgreSQL</strong>
+(base relacional transaccional).</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Tecnología</th>
+<th>Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frontend</td>
+<td>React / Next.js</td>
+<td>Interfaz de usuario, renderizado híbrido</td>
+</tr>
+<tr>
+<td>Backend</td>
+<td>FastAPI / NestJS</td>
+<td>API REST, lógica de aplicación</td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td>PostgreSQL</td>
+<td>Persistencia transaccional</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>VER EN EL REPO → <code>unidad-4-arquitectura-web/</code> para
+evolución web, diseño de sitios y patrones de diseño web.</p>
+</blockquote>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> tu API debe documentarse con
+OpenAPI. El contrato se define en <code>SPEC.md</code> antes de escribir
+código. El stack del proyecto modelo es Next.js + FastAPI +
+PostgreSQL.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Qué problema resuelve SSG que SSR no resuelve?</li>
+<li>¿Qué verbo HTTP usarías para crear un recurso y qué código
+esperar?</li>
+<li>¿Cuál es la diferencia entre un contrato REST definido en SPEC y uno
+generado automáticamente por el framework?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="arquitectura-mobile" class="level1">
+<h1>Arquitectura Mobile</h1>
+<blockquote>
+<p>Mobile no es “la web achicada”. Es un entorno con batería finita, red
+intermitente, almacenamiento acotado y un sistema operativo que puede
+cerrar tu proceso cuando lo necesite.</p>
+</blockquote>
+<section id="estrategias-de-desarrollo" class="level2">
+<h2>Estrategias de desarrollo</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Estrategia</th>
+<th>Código</th>
+<th>Performance</th>
+<th>Acceso a hardware</th>
+<th>Distribución</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nativa</strong></td>
+<td>Kotlin (Android), Swift (iOS)</td>
+<td>Máxima</td>
+<td>Completo</td>
+<td>App stores</td>
+</tr>
+<tr>
+<td><strong>Cross-platform</strong></td>
+<td>Flutter, React Native</td>
+<td>Muy buena</td>
+<td>Amplio vía plugins</td>
+<td>App stores</td>
+</tr>
+<tr>
+<td><strong>PWA</strong> (Progressive Web App)</td>
+<td>HTML/CSS/JS</td>
+<td>Limitada por navegador</td>
+<td>Parcial</td>
+<td>URL directa</td>
+</tr>
+</tbody>
+</table>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> nativo es construir con materiales
+locales y mano de obra especializada para cada plataforma.
+Cross-platform es una constructora única con planos que se adaptan a
+cada ciudad. PWA es lo que ya sabés hacer en la web, instalable en el
+dispositivo.</p>
+</div>
+</section>
+<section id="offline-first" class="level2">
+<h2>Offline-First</h2>
+<p>El patrón más importante del desarrollo mobile: la aplicación
+funciona plenamente sin conexión y sincroniza cuando hay red.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Función</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Base local (SQLite)</td>
+<td>Fuente primaria de datos: toda lectura/escritura va contra la base
+local</td>
+</tr>
+<tr>
+<td>Repositorio</td>
+<td>Capa única que abstrae si el origen es local o remoto</td>
+</tr>
+<tr>
+<td>Cola de salida (outbox)</td>
+<td>Cada cambio pendiente se marca y sincroniza cuando hay red</td>
+</tr>
+<tr>
+<td>Sincronización bidireccional</td>
+<td>El servidor y el cliente intercambian cambios con resolución de
+conflictos</td>
+</tr>
+</tbody>
+</table>
+<div class="concepto">
+<p><strong>Offline-First:</strong> la red pasa a ser una optimización,
+no un requisito. La app es completamente funcional sin conectividad. El
+usuario nunca pierde datos por un error de red.</p>
+</div>
+<blockquote>
+<p>VER EN EL REPO → <code>unidad-5-arquitectura-mobile/</code> para
+conceptos mobile, patrones y herramientas de desarrollo.</p>
+</blockquote>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> la decisión de estrategia mobile
+(nativa, cross-platform o PWA) se documenta en un ADR con al menos dos
+alternativas descartadas. El TP5 del repo <code>proyecto-adi-2026</code>
+contiene la matriz de decisión. La implementación por sprint se detalla
+en el Cuadernillo 03.</p>
+</div>
+<div class="error">
+<p><strong>ERROR FRECUENTE:</strong> diseñar la UI mobile como “la
+versión web pero más chica”. Mobile tiene sus propios patrones de
+navegación, tiempos de carga, consumo de batería y estados de
+conectividad. Si no diseñás para la desconexión, tu app pierde datos
+cuando el usuario entra al subte.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Cuál es la ventaja principal de Offline-First sobre una app que
+solo funciona conectada?</li>
+<li>¿En qué caso elegirías una app nativa en lugar de una
+cross-platform?</li>
+<li>¿Qué componente evita que la UI sepa si los datos vienen de una base
+local o remota?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="cicd-y-herramientas" class="level1">
+<h1>CI/CD y Herramientas</h1>
+<blockquote>
+<p>Entregar software “a mano” es entregarlo con variabilidad: funciona
+en mi máquina, se rompe en producción y nadie sabe exactamente qué
+versión quedó publicada.</p>
+</blockquote>
+<section id="contenedores-docker" class="level2">
+<h2>Contenedores (Docker)</h2>
+<p>Un contenedor empaqueta aplicación + dependencias + runtime en una
+imagen inmutable. La imagen se construye una vez y corre igual en
+cualquier entorno.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Qué es</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imagen</td>
+<td>Plantilla inmutable con todo lo necesario para correr la app</td>
+</tr>
+<tr>
+<td>Contenedor</td>
+<td>Instancia en ejecución de una imagen</td>
+</tr>
+<tr>
+<td>Dockerfile</td>
+<td>Receta para construir la imagen</td>
+</tr>
+<tr>
+<td>Docker Compose</td>
+<td>Orquestación de múltiples contenedores</td>
+</tr>
+</tbody>
+</table>
+<div class="simple">
+<p><strong>EN SIMPLE:</strong> “En mi máquina funciona” deja de ser
+excusa porque la máquina viaja dentro de la imagen.</p>
+</div>
+</section>
+<section id="integración-continua-ci" class="level2">
+<h2>Integración Continua (CI)</h2>
+<p>Cada push al repositorio dispara validaciones automáticas: linters,
+tests, builds. Romper la rama principal se detecta en minutos.</p>
+<table>
+<thead>
+<tr>
+<th>Componente del pipeline</th>
+<th>Qué valida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lint</td>
+<td>El código cumple las reglas de estilo y sintaxis del lenguaje</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>Las pruebas existentes siguen pasando</td>
+</tr>
+<tr>
+<td>Build</td>
+<td>La aplicación compila y empaqueta correctamente</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="despliegue-continuo-cd" class="level2">
+<h2>Despliegue Continuo (CD)</h2>
+<p>Lo validado por CI llega a producción automáticamente (CD continuo) o
+a un estadio listo para publicar con un click (entrega continua).</p>
+</section>
+<section id="github-actions" class="level2">
+<h2>GitHub Actions</h2>
+<p>Sistema de pipelines nativo de GitHub. Los workflows se escriben en
+YAML y se versionan junto al código.</p>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workflow</td>
+<td>Archivo <code>.yml</code> que define el pipeline completo</td>
+</tr>
+<tr>
+<td>Job</td>
+<td>Conjunto de pasos que se ejecutan en el mismo runner</td>
+</tr>
+<tr>
+<td>Step</td>
+<td>Comando individual dentro de un job</td>
+</tr>
+<tr>
+<td>Runner</td>
+<td>Máquina virtual donde se ejecutan los jobs</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>VER EN EL REPO → <code>unidad-6-herramientas-y-tecnologias/</code>
+para ejemplos de workflows YAML y automatización con arnés.</p>
+</blockquote>
+</section>
+<section id="automatización-con-arnés" class="level2">
+<h2>Automatización con arnés</h2>
+<p>El mismo principio de gobierno que aplicás a tu agente IA se aplica
+al pipeline: nada entra a <code>main</code> sin SPEC asociada, checks
+verdes y revisión.</p>
+<div class="proyecto">
+<p><strong>EN EL PROYECTO:</strong> el pipeline CI/CD se documenta en un
+workflow de GitHub Actions que lintea, construye y valida SPEC en cada
+Pull Request. El proyecto modelo del repo <code>proyecto-adi-2026</code>
+contiene ejemplos. Los detalles de implementación y evaluación están en
+los Cuadernillos 02 y 03.</p>
+</div>
+<blockquote>
+<p>Comparativa despliegue manual vs automatizado:
+<code>unidad-6-herramientas-y-tecnologias/06-integracion-y-prueba/README.md</code></p>
+</blockquote>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Respondé sin mirar:</strong></p>
+<ol type="1">
+<li>¿Qué problema resuelven los contenedores Docker?</li>
+<li>¿Cuál es la diferencia entre CI y CD?</li>
+<li>¿Qué archivos y en qué formato definen un pipeline en GitHub
+Actions?</li>
+</ol>
+</div></div></section>
+</section>
+<section id="mapa-conceptual-final" class="level1">
+<h1>Mapa conceptual final</h1>
+<p>Cada unidad de este cuadernillo te dio una pieza del rompecabezas. El
+orden importa porque los conceptos se construyen unos sobre otros.</p>
+<pre><code>U1 ─ SDD: especificar antes de codificar
+ │
+ ├──→ U2 ─ Arquitectura: estilos, C4, ADR
+ │     │
+ │     ├──→ U3 ─ Interfaces: el usuario está primero
+ │     │
+ │     ├──→ U4 ─ Web: CSR, SSR, REST
+ │     │
+ │     └──→ U5 ─ Mobile: offline-first
+ │
+ └──→ U6 ─ CI/CD: automatizar y asegurar</code></pre>
+<div class="importa">
+<p><strong>La conexión con los otros cuadernillos:</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Cuadernillo</th>
+<th>Qué hace con esta teoría</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>02 — Proyecto ADI</strong></td>
+<td>Aplica estos conceptos en 7 TP con el proyecto modelo</td>
+</tr>
+<tr>
+<td><strong>03 — PP3</strong></td>
+<td>Coordina los sprints donde implementás todo en tu repositorio
+individual</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>VER EN EL REPO → <code>RECURSOS.md</code> para la bibliografía
+completa y <code>recursos-generales/</code> para fuentes
+transversales.</p>
+</blockquote>
+<div class="recorda">
+<p>El repositorio de teoría (<code>ADI-teoria-y-recursos</code>) tiene
+desarrollo completo de cada unidad, ejercicios y fuentes verificables.
+Este cuadernillo es el mapa; el repo es el territorio.</p>
+</div>
+<div class="cierre"><div class="checkpoint">
+<p><strong>Revisión final:</strong></p>
+<ol type="1">
+<li>Volvé a las unidades donde tengas dudas.</li>
+<li>Revisá los checkpoints que no pudiste responder.</li>
+<li>Cuando el docente habilite el TP, los conceptos de este cuadernillo
+son los que vas a aplicar.</li>
+</ol>
+</div></div></section>
+</body>
+</html>
